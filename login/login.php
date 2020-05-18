@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Login V8</title>
+    <title>Login </title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="wrap-input100 validate-input" data-validate = "Please enter password">
-                    <input class="input100" type="password" name="password" placeholder="Password">
+                    <input class="input100" type="password" name="pass" placeholder="Password">
                     <span class="focus-input100"></span>
                 </div>
 
