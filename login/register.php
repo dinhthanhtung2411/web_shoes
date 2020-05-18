@@ -50,7 +50,7 @@
                     <span class="focus-input100"></span>
                 </div>
 
-                <div class="container-login100-form-btn" style="margin-top: 15px">
+                <div class="container-login100-form-btn" style="margin-top: 15px; margin-bottom: 50px" >
                     <button class="login100-form-btn">
                         Register
                     </button>
