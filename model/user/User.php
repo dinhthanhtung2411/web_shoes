@@ -3,17 +3,26 @@
 
 class User
 {
+    private $name;
     private $email;
     private $password;
     private $role;
 
-    public function __construct($email,$password,$role=null)
+    public function __construct($name,$email,$password,$role=null)
     {
+        $this->name = $name;
         $this->email = $email;
         $this->password = $password;
         $this->role = $role;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
     /**
      * @return mixed
      */
@@ -60,5 +69,13 @@ class User
     public function setPassword($password)
     {
         $this->password = $password;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
     }
 }
