@@ -1,5 +1,7 @@
 <?php
+//require "../model/user/User.php";
 require "../model/DB.php";
+//require "../model/user/UserDb.php";
 
 
 session_start();
@@ -8,17 +10,21 @@ if (isset($_SESSION["isAdmin"])){
     session_destroy();
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST"){
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
-    if ($email == 'admin@gmail.com' & $password = 'admin123'){
-        $_SESSION['isAdmin'] = true;
+    if ($email == 'admin@gmail.com' && $password == 'admin123') {
+        $_SESSION["isAdmin"] = true;
         header("location: ../admin/admin.php");
-    }else{
-        $_SESSION['isAdmin'] = false;
-        header("locaton: ../index.php");
+    } else {
+        $_SESSION["isAdmin"] = false;
+        header("location: ../index.php");
     }
+    $user = new User($email,$password);
+    $userDB = new UserDb();
+    $message = $userDB->login($user);
 }
+
 ?>
 
 
@@ -62,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
-            <form class="login100-form validate-form p-l-55 p-r-55 p-t-178">
+            <form class="login100-form validate-form p-l-55 p-r-55 p-t-178" method="post">
 					<span class="login100-form-title">
 						Sign In
 					</span>
@@ -73,9 +79,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 </div>
 
                 <div class="wrap-input100 validate-input" data-validate = "Please enter password">
-                    <input class="input100" type="password" name="pass" placeholder="Password">
+                    <input class="input100" type="password" name="password" placeholder="Password">
                     <span class="focus-input100"></span>
                 </div>
+
+                <span style="color:red; margin-left: 15%; font-size: 18px" id="alert-login"><?php echo ($message); ?></span>
+
 
                 <div class="text-right p-t-13 p-b-23">
 						<span class="txt1">

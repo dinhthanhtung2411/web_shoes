@@ -13,8 +13,9 @@ class UserDb
 
     public function register($user)
     {
-        $sql = "INSERT INTO users (email, password, role) VALUE (:email, :password, :role)";
+        $sql = "INSERT INTO users (name, email, password, role) VALUE (:name, :email, :password, :role)";
         $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam("name", $user->getName());
         $stmt->bindParam(":email", $user->getEmail());
         $stmt->bindParam(":password",$user->getPassword());
         $stmt->bindParam(":role", $user->getRole());
@@ -28,7 +29,7 @@ class UserDb
         $result = $stmt->fetchAll();
         $arr = [];
         foreach ($result as $item) {
-            $user = new User($item['email'], $item['password'], $item['role']);
+            $user = new User($item['name'],$item['email'], $item['password'], $item['role']);
             array_push($arr, $user);
         }
         return $arr;
