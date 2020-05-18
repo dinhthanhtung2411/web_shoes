@@ -1,3 +1,35 @@
+<?php
+require "../model/DB.php";
+
+
+session_start();
+
+if (isset($_SESSION["isAdmin"])){
+    session_destroy();
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    if ($email == 'admin@gmail.com' & $password = 'admin123'){
+        $_SESSION['isAdmin'] = true;
+        header("location: ../admin/admin.php");
+    }else{
+        $_SESSION['isAdmin'] = false;
+        header("locaton: ../index.php");
+    }
+}
+?>
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
