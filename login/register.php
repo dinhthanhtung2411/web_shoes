@@ -1,3 +1,38 @@
+<?php
+require "../model/user/User.php";
+require "../model/user/UserDb.php";
+require "../model/DB.php";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $passwod= $_POST['password'];
+    $retype_password = $_POST['retype_password'];
+    if ($passwod == $retype_password){
+        $userDB = new UserDb();
+        $user = new User($name,$email,$passwod);
+        $userDB->register($user);
+        echo "<script>alert(\"Đăng Ký Thành Công\");</script>";
+    }else{
+        echo "<script>alert(\"Mật Khẩu Không Trùng Khớp\");</script>";
+    }
+};
+
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,10 +65,15 @@
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
-            <form class="login100-form validate-form p-l-55 p-r-55 p-t-178">
+            <form class="login100-form validate-form p-l-55 p-r-55 p-t-178" method="post">
 					<span class="login100-form-title">
 						Register
 					</span>
+
+                <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter name">
+                    <input class="input100" type="text" name="name" placeholder="Name">
+                    <span class="focus-input100"></span>
+                </div>
 
                 <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter email">
                     <input class="input100" type="email" name="email" placeholder="Email">
@@ -46,7 +86,7 @@
                 </div>
 
                 <div class="wrap-input100 validate-input" data-validate = "Please enter password" style="margin-top: 15px">
-                    <input class="input100" type="password" name="password" placeholder="Re-type password">
+                    <input class="input100" type="password" name="retype_password" placeholder="Re-type password">
                     <span class="focus-input100"></span>
                 </div>
 
