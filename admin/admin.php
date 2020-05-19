@@ -1,3 +1,24 @@
+<?php
+session_start();
+
+if (!$_SESSION["isAdmin"] || !isset($_SESSION["isAdmin"])){
+    header("location: ../login/login.php");
+}
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -274,7 +295,7 @@
                             <span class="profile-ava">
                                 <img alt="" src="img/avatar1_small.jpg">
                             </span>
-                        <span class="username">Jenifer Smith</span>
+                        <span class="username">Hi admin</span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">
