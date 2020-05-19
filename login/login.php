@@ -1,7 +1,5 @@
 <?php
-//require "../model/user/User.php";
 require "../model/DB.php";
-//require "../model/user/UserDb.php";
 
 
 session_start();
@@ -107,7 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 							Don’t have an account?
 						</span>
 
-                    <a href="#" class="txt3">
+                    <a href="register.php" class="txt3">
                         Sign up now
                     </a>
                 </div>
