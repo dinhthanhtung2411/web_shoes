@@ -13,20 +13,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $user = new User($name,$email,$passwod);
         $userDB->register($user);
         header("location: ./login.php");
-        echo "<script>alert(\"Đăng Ký Thành Công\");</script>";
-    }else{
-        echo "<script>alert(\"Mật Khẩu Không Trùng Khớp\");</script>";
-    }
+   }
 };
 
+
 ?>
-
-
-
-
-
-
-
 
 
 
