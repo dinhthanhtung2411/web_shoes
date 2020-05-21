@@ -15,6 +15,8 @@
         <input type="hidden" name="id" value="<?php echo $category->getId(); ?>">
         <div class="form-group">
             <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Ban da xoa thanh cong')">
+            <button class="btn btn-secondary" onclick="window.history.go(-1); return false;">Cancel</button>
+
         </div>
     </form>
 </div>

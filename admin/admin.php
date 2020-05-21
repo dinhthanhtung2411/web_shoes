@@ -80,6 +80,9 @@ $action = isset($_REQUEST["action"]) ? $_REQUEST["action"] : null;
         case "delete":
             $controller->delete();
             break;
+        case "edit":
+            $controller->edit();
+            break;
         default :
             $controller->index();
     };

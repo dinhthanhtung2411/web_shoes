@@ -56,5 +56,14 @@ class CategoryDB
         $stmt->bindParam(1,$id);
         return $stmt->execute();
     }
+    public function edit($category)
+    {
+        $sql = "UPDATE categories SET name = ?, description = ? WHERE id = ?";
+        $stmt = $this->db->prepare($sql);
 
+        $stmt->bindParam(1,$category->getName());
+        $stmt->bindParam(2,$category->getDescription());
+        $stmt->bindParam(3,$category->getId());
+        $stmt->execute();
+    }
 }
