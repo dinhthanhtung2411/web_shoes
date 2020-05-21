@@ -34,6 +34,27 @@ class CategoryDB
         $stmt->bindParam(2,$category->getDescription());
 
         return $stmt->execute();
-
     }
+
+    public function getID($id)
+    {
+
+        $sql = "SELECT * FROM categories WHERE id= $id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(1,$id);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        $category = new Category($result["name"],$result["description"]);
+        $category->setId($result["id"]);
+        return $category;
+    }
+
+    public function delete($id)
+    {
+        $sql = "DELETE FROM categories WHERE id = $id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(1,$id);
+        return $stmt->execute();
+    }
+
 }

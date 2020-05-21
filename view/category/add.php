@@ -1,5 +1,5 @@
-<div class="container">
-    <div class="row">
+<div class="container" style="padding-top: 100px;padding-left: 100px">
+<div class="row">
         <div class="col-md-6">
             <h2>Add Category : </h2>
             <form role="form" method="post">
@@ -12,7 +12,7 @@
                     <input class="form-control" name="description" type="text">
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success loginFormElement">Add Category</button>
+                    <button type="submit" class="btn btn-success loginFormElement" onclick="return confirm('Bạn đẫ tạo thành công ')">Add Category</button>
                 </div>
             </form>
         </div>

@@ -225,7 +225,7 @@
                             <span class="profile-ava">
                                 <img alt="" src="img/avatar1_small.jpg">
                             </span>
-                    <span class="username">Hi admin</span>
+                    <span class="username"><?php echo $_SESSION['username'] ?></span>
                     <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu extended logout">

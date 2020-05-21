@@ -1,6 +1,6 @@
 <?php
 require "../model/DB.php";
-
+include_once '../include_scr.php';
 
 session_start();
 
@@ -11,28 +11,23 @@ if (isset($_SESSION["isAdmin"])){
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
-    if ($email == 'admin@gmail.com' && $password == 'admin123') {
-        $_SESSION["isAdmin"] = true;
-        header("location: ../admin/admin.php");
-    } else {
-        $_SESSION["isAdmin"] = false;
-        header("location: ../index.php");
-    }
     $user = new User($email,$password);
     $userDB = new UserDb();
-    $message = $userDB->login($user);
+    if ($user = $userDB->login($user)) {
+        $_SESSION['username'] = $user['name'] ? $user['name'] : 'Username';
+        if ($email == 'admin@gmail.com' && $password == 'admin123') {
+            $_SESSION["isAdmin"] = true;
+            header("location: ../admin/admin.php");
+        } else {
+            $_SESSION["isAdmin"] = false;
+            header("location: ../index.php");
+        }
+    } else {
+        $message = 'Wrong email or password!';
+    }
 }
 
 ?>
-
-
-
-
-
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
