@@ -22,22 +22,6 @@ $data['name'] = isset($_POST['name']) ? $_POST['name'] : '';
 $data['email'] = isset($_POST['email']) ? $_POST['email'] : '';
 $data['password'] = isset($_POST['password']) ? $_POST['password'] : '';
 
-require ("../validate.php");
-if (empty($data['name'])) {
-    $error['name'] = "Ban chua dang nhap";
-}
-if (empty($data['email'])){
-    $error['email'] = 'Bạn chưa email';
-}
-else if (!is_email($data['email'])){
-    $error['email'] = 'Email không đúng định dạng';
-}
-
-if (empty($data['content'])){
-    $error['content'] = 'Bạn chưa nhập nội dung';
-}
-
-
 ?>
 
 <!DOCTYPE html>
