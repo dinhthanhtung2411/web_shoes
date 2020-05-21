@@ -17,12 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 };
 ?>
 
-<?php
-$data['name'] = isset($_POST['name']) ? $_POST['name'] : '';
-$data['email'] = isset($_POST['email']) ? $_POST['email'] : '';
-$data['password'] = isset($_POST['password']) ? $_POST['password'] : '';
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -62,9 +56,7 @@ $data['password'] = isset($_POST['password']) ? $_POST['password'] : '';
 					</span>
 
                 <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter name">
-                    <input class="input100" type="text" name="name" placeholder="Name" value="<?php echo isset($data['name']) ? $data['name'] : ''; ?>">
-                                    <?php echo isset($error['name']) ? $error['name'] : ''; ?>
-
+                    <input class="input100" type="text" name="name" placeholder="Name" value="">
                     <span class="focus-input100"></span>
                 </div>
 
@@ -82,13 +74,11 @@ $data['password'] = isset($_POST['password']) ? $_POST['password'] : '';
                     <input class="input100" type="password" name="retype_password" placeholder="Re-type password">
                     <span class="focus-input100"></span>
                 </div>
-
                 <div class="container-login100-form-btn" style="margin-top: 15px; margin-bottom: 50px" >
                     <button class="login100-form-btn">
                         Register
                     </button>
                 </div>
-
             </form>
         </div>
     </div>
