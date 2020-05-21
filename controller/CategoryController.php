@@ -60,7 +60,6 @@ class CategoryController
             $category = new Category($_POST["name"], $_POST["description"]);
             $category->setId($_POST["id"]);
             $this->categoryDB->edit($category);
-            
         }
         include "../view/category/edit.php";
     }
