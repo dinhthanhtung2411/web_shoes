@@ -3,6 +3,8 @@
 namespace Controller;
 use Category;
 use CategoryDB;
+use DB;
+
 
 class CategoryController
 {
@@ -26,5 +28,27 @@ class CategoryController
             $category = new Category($_POST['name'], $_POST['description']);
             $this->categoryDB->add($category);
         }
+    }
+    public function delete()
+    {
+        $id = $_GET['id'];
+        $category = $this->categoryDB->getId($id);
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $id = $_POST["id"];
+            $this->categoryDB->delete($id);
+        };
+        include '../view/category/delete.php';
+
+//
+//        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+//            $id = $_GET['id'];
+//            $categoty = $this->categoryDB->getID($id);
+//            include "../view/category/delete.php";
+//        } else {
+//            $id = $_POST['id'];
+//            $this->categoryDB->delete($id);
+//
+//        }
+
     }
 }

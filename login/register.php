@@ -10,20 +10,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $retype_password = $_POST['retype_password'];
     if ($passwod == $retype_password){
         $userDB = new UserDb();
-        $user = new User($name,$email,$passwod);
+        $user = new User($email,$passwod,$name);
         $userDB->register($user);
         header("location: ./login.php");
    }
 };
+?>
+
+<?php
+$data['name'] = isset($_POST['name']) ? $_POST['name'] : '';
+$data['email'] = isset($_POST['email']) ? $_POST['email'] : '';
+$data['password'] = isset($_POST['password']) ? $_POST['password'] : '';
+
+require ("../validate.php");
+if (empty($data['name'])) {
+    $error['name'] = "Ban chua dang nhap";
+}
+if (empty($data['email'])){
+    $error['email'] = 'Bạn chưa email';
+}
+else if (!is_email($data['email'])){
+    $error['email'] = 'Email không đúng định dạng';
+}
+
+if (empty($data['content'])){
+    $error['content'] = 'Bạn chưa nhập nội dung';
+}
 
 
 ?>
-
-
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -63,7 +78,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 					</span>
 
                 <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter name">
-                    <input class="input100" type="text" name="name" placeholder="Name">
+                    <input class="input100" type="text" name="name" placeholder="Name" value="<?php echo isset($data['name']) ? $data['name'] : ''; ?>">
+                                    <?php echo isset($error['name']) ? $error['name'] : ''; ?>
+
                     <span class="focus-input100"></span>
                 </div>
 

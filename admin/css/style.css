@@ -10,8 +10,6 @@
 
 @import url(line-icons.css);
 
-
-
 body {
 
     color: #797979;
@@ -2390,7 +2388,7 @@ div[data-role="editor-toolbar"] {
 
 }
 
-}
+
 
 .panel.panel-default.panel-heading {
 
@@ -3004,7 +3002,7 @@ div[data-role="editor-toolbar"] {
 
 }
 
-* /Widget-Content */
+/** /Widget-Content *!*/
 
 
 
@@ -3360,7 +3358,7 @@ div[data-role="editor-toolbar"] {
 
 /*-----	map-----*/
 
-* Google maps */
+/** Google maps *!*/
 
 
 
@@ -3670,7 +3668,6 @@ div[data-role="editor-toolbar"] {
 
     font-weight: 300;
 
-    font-weight: 30px;
 
 }
 
@@ -4152,7 +4149,7 @@ div[data-role="editor-toolbar"] {
 
         margin-bottom: -4px;
 
-    };
+    }
 
     }
 
