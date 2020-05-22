@@ -226,7 +226,6 @@
                                 <img alt="" src="img/avatar1_small.jpg">
                             </span>
                     <span class="username"><?php echo $_SESSION['username'] ?></span>
-                    <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu extended logout">
                     <div class="log-arrow-up"></div>

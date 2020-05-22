@@ -8,15 +8,17 @@ class Product
     private $image;
     private $price;
     private $category_id;
+    private $image_id;
     private $description;
     private $createdDate;
 
-    public function __construct($name, $image,$price,$category_id,$description,$createdDate)
+    public function __construct($name, $image,$price,$category_id,$image_id,$description,$createdDate)
     {
         $this->name = $name;
         $this->image = $image;
         $this->price = $price;
         $this->category_id = $category_id;
+        $this->image_id = $image_id;
         $this->description = $description;
         $this->createdDate = $createdDate;
     }
@@ -132,5 +134,21 @@ class Product
     public function setCreatedDate($createdDate)
     {
         $this->createdDate = $createdDate;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImageId()
+    {
+        return $this->image_id;
+    }
+
+    /**
+     * @param mixed $image_id
+     */
+    public function setImageId($image_id)
+    {
+        $this->image_id = $image_id;
     }
 }
