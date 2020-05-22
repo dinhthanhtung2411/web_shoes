@@ -1,10 +1,11 @@
 <?php
-
 namespace Controller;
 use Category;
 use CategoryDB;
 use DB;
 
+
+ob_start();
 
 class CategoryController
 {
@@ -27,17 +28,19 @@ class CategoryController
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $category = new Category($_POST['name'], $_POST['description']);
             $this->categoryDB->add($category);
+            header("Location: ../admin/admin.php?page=category&action=list");
         }
     }
     public function delete()
     {
         $id = $_GET['id'];
         $category = $this->categoryDB->getId($id);
+        include '../view/category/delete.php';
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $id = $_POST["id"];
             $this->categoryDB->delete($id);
+            header("Location: ../admin/admin.php?page=category&action=list");
         };
-        include '../view/category/delete.php';
 
 //
 //        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -55,13 +58,15 @@ class CategoryController
     {
         $id = $_GET['id'];
         $category = $this->categoryDB->getId($id);
-
+        include "../view/category/edit.php";
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
             $category = new Category($_POST["name"], $_POST["description"]);
             $category->setId($_POST["id"]);
             $this->categoryDB->edit($category);
-            
+            header("Location: ../admin/admin.php?page=category&action=list");
+
         }
-        include "../view/category/edit.php";
     }
 }
+
+?>

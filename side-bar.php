@@ -18,9 +18,13 @@
                     <span>Category</span>
                     <span class="menu-arrow arrow_carrot-right"></span>
                 </a>
-                <ul class="sub">
-                    <li><a class="" href="">List </a></li>
-                </ul>
+            </li>
+            <li class="sub-menu">
+                <a <?php if ($_GET["page"] == ["product"]) echo "class='active"?>href="admin.php?page=product" class="">
+                    <i class="icon_table"></i>
+                    <span>Product</span>
+                    <span class="menu-arrow arrow_carrot-right"></span>
+                </a>
             </li>
 
 
