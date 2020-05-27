@@ -6,6 +6,6 @@ require "model/category/CategoryDB.php";
 require "model/product/Product.php";
 require "model/product/ProductDB.php";
 
-
+require 'controller/ShopController.php';
 require "controller/CategoryController.php";
 require "controller/ProductController.php";
