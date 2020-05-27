@@ -13,12 +13,13 @@ class ProductDB
 
     public function getById($id)
     {
-        $sql = "SELECT * FROM products WHERE id = $id";
+        $sql = "SELECT * FROM products WHERE id = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(1,$id);
         $stmt->execute();
         $result = $stmt->fetch();
-        $product = new Product($result["name"],$result["image"],$result["price"],$result["category_id"],$result["image_id"],$result["description"], $result["createdDate"]);
+        $product = new Product($result["name"],$result["price"], $result['category_id'],$result["description"]);
+        $product->setCreatedDate($result['createdDate']);
         $product->setId($result["id"]);
         return $product;
     }
@@ -29,11 +30,9 @@ class ProductDB
             $type = "WHERE category_id" . $type;
         }
         $sql = "SELECT products.id,
-                       products.name,             
-                       products.image,             
+                       products.name,                          
                        products.price,             
-                       products.category_id,
-                       products.image_id,             
+                       products.category_id,       
                        products.description
                 From products INNER JOIN categories on products.category_id=categories.name".$type."ORDER BY createdDate ASC LIMIT 0, 8";
         $stmt = $this->db->prepare($sql);
@@ -45,13 +44,11 @@ class ProductDB
 
         foreach ($result as $item){
             $product = new Product($item["name"],
-                                    $item["image"],
                                     $item["price"],
                                     $item["category_id"],
-                                    $item["image_id"],
-                                    $item["description"],
-                                    $item["createdDate"]);
+                                    $item["description"]);
             $product->setId($item["id"]);
+            $product->setCreatedDate($item["createdDate"]);
             array_push($products,$product);
         }
         return $products;
@@ -74,8 +71,7 @@ class ProductDB
         }
 
 
-        $sql = "SELECT products.id, products.name, products.image, products.price, products.category_id,products.image_id, products.description
-            FROM products INNER JOIN categories ON products.category_id = categories.name"."$orderStr $type $limitStr";
+        $sql = "SELECT products.* FROM products INNER JOIN categories ON products.category_id = categories.id"."$orderStr $type $limitStr";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
 
@@ -84,13 +80,11 @@ class ProductDB
         $products = [];
         foreach ($result as $item){
             $product = new Product($item["name"],
-                $item["image"],
                 $item["price"],
-                $item["category_id"],
-                $item["image_id"],
-                $item["description"],
-                $item["createdDate"]);
+                $item['category_id'],
+                $item["description"]);
             $product->setId($item["id"]);
+            $product->setCreatedDate($item["createdDate"]);
             array_push($products,$product);
         }
         return $products;
@@ -107,10 +101,8 @@ class ProductDB
         $products = [];
         foreach ($result as $item){
             $product = new Product($item["name"],
-                $item["image"],
                 $item["price"],
                 $item["category_id"],
-                $item["image_id"],
                 $item["description"],
                 $item["createdDate"]);
             $product->setId($item["id"]);
@@ -118,5 +110,47 @@ class ProductDB
         }
         return $products;
     }
+    public function add($product)
+    {
+        $sql = "INSERT INTO products(name, price, category_id, description, createdDate) VALUE (?,?,?,?,?)";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(1, $product->getName());
+        $stmt->bindParam(2, $product->getPrice());
+        $stmt->bindParam(3, $product->getCategoryId());
+        $stmt->bindParam(4, $product->getDescription());
+        $stmt->bindParam(5, $product->getCreatedDate());
+        return $stmt->execute();
+    }
 
+    public function getLastProductId()
+    {
+        $sql = 'SELECT id FROM products ORDER BY id DESC LIMIT 1';
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function delete($id)
+    {
+        $sql = "DELETE FROM products WHERE id = $id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(1,$id);
+        $stmt->execute();
+    }
+
+    public function edit($product)
+    {
+        $sql = "UPDATE products SET name = ?,
+                                    price = ?,
+                                    category_id = ?,
+                                    description = ?,
+                                    createdDate = ? WHERE id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(1,$product->getName());
+        $stmt->bindParam(2,$product->getPrice());
+        $stmt->bindParam(3,$product->getCategoryId());
+        $stmt->bindParam(4,$product->getDescription());
+        $stmt->bindParam(5,$product->getCreatedDate());
+        $stmt->execute();
+    }
 }

@@ -11,8 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     if ($passwod == $retype_password){
         $userDB = new UserDb();
         $user = new User($email,$passwod,$name);
-        $userDB->register($user);
-        header("location: ./login.php");
+            $userDB->register($user);
+            header("location: ./login.php");
    }
 };
 ?>
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 					</span>
 
                 <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter name">
-                    <input class="input100" type="text" name="name" placeholder="Name" value="">
+                    <input class="input100" type="text" name="name" placeholder="Name" value="" minlength="4" maxlength="10">
                     <span class="focus-input100"></span>
                 </div>
 
@@ -65,8 +65,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                     <span class="focus-input100"></span>
                 </div>
 
-                <div class="wrap-input100 validate-input" data-validate = "Please enter password">
-                    <input class="input100" type="password" name="password" placeholder="Password">
+                <div class="wrap-input100 validate-input" data-validate = "Please enter password" >
+                    <input class="input100" type="password" name="password" placeholder="Password" minlength="4" maxlength="10">
                     <span class="focus-input100"></span>
                 </div>
 

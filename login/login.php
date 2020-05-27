@@ -78,16 +78,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <span style="color:red; margin-left: 15%; font-size: 18px" id="alert-login"><?php echo ($message); ?></span>
 
-
-                <div class="text-right p-t-13 p-b-23">
-						<span class="txt1">
-							Forgot
-						</span>
-
-                    <a href="#" class="txt2">
-                        Username / Password?
-                    </a>
-                </div>
+<!---->
+<!--                <div class="text-right p-t-13 p-b-23">-->
+<!--						<span class="txt1">-->
+<!--							Forgot-->
+<!--						</span>-->
+<!---->
+<!--                    <a href="#" class="txt2">-->
+<!--                        Username / Password?-->
+<!--                    </a>-->
+<!--                </div>-->
 
                 <div class="container-login100-form-btn">
                     <button class="login100-form-btn">

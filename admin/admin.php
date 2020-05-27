@@ -61,8 +61,8 @@ require_once "../include_scr.php"
 </head>
 
 <body>
-<?php include "../headerAdmin.php" ?>
-<?php include "../side-bar.php"; ?>
+<?php include "../headerAdmin.php";?>
+<?php include "../side-bar.php";?>
 <?php
 $page = isset($_REQUEST["page"]) ? $_REQUEST["page"] : null;
 $action = isset($_REQUEST["action"]) ? $_REQUEST["action"] : null;
